@@ -30,12 +30,12 @@ DELETE http://localhost:4600/notes/f40c5e1a-5439-4b68-8ec1-97e16446eed9
 
 
 ###Register User
-POST http://localhost:4600/user
+POST http://localhost:4600/user/register
 Content-Type: application/json
 
 {
-    "username":"AbdulRaheem M",
-    "email":"davidmunyiri2019@gmail.com",
+    "username":"Samson Mwangi",
+    "email":"samsonmwangi@gmail.com",
     "password":"12345678"
 }
 
@@ -45,6 +45,6 @@ POST http://localhost:4600/user/login
 Content-Type: application/json
 
 {
-    "username":"David Munyiri",
+   "username":"Samson Mwangi",
     "password":"12345678"
 }

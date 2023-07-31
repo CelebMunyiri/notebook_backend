@@ -3,7 +3,7 @@ const { registerUser, userLogin } = require('../controllers/authController')
 
 userRouter=Router()
 
-userRouter.post('/',registerUser)
+userRouter.post('/register',registerUser)
 userRouter.post('/login',userLogin)
 
 module.exports={
