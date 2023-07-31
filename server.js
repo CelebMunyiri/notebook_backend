@@ -3,11 +3,11 @@ const { projectRouter } = require('./Routes/projectRoutes');
 const { userRouter } = require('./Routes/userRoutes');
 const app=express();
 app.use(express.json())
-app.use('/projects',projectRouter)
+app.use('/notes',projectRouter)
 app.use('/user',userRouter)
 app.use((err,req,res,next)=>{
     res.json({Error:err})
 })
-app.listen(4700,()=>{
+app.listen(4600,()=>{
     console.log('server Running on port 4700')
 })

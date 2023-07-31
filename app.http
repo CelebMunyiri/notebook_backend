@@ -1,4 +1,4 @@
-POST http://localhost:4700/projects
+POST http://localhost:4600/notes
 Content-Type: application/json
 
 {
@@ -8,15 +8,15 @@ Content-Type: application/json
 
 
 ### GET ONE Note
-GET http://localhost:4700/projects/
+GET http://localhost:4600/notes/
 
 
 ###GET ALL NOTES
-GET http://localhost:4700/projects
+GET http://localhost:4600/notes
 
 
 ###UPDATE a NOTE
-PUT http://localhost:4700/projects/5c67e259-e4ba-44ec-9e18-c81807557793
+PUT http://localhost:4600/notes/5c67e259-e4ba-44ec-9e18-c81807557793
 Content-Type: application/json
 
 {
@@ -26,11 +26,11 @@ Content-Type: application/json
 
 
 ###DELETE A NOTE
-DELETE http://localhost:4700/projects/f40c5e1a-5439-4b68-8ec1-97e16446eed9
+DELETE http://localhost:4600/notes/f40c5e1a-5439-4b68-8ec1-97e16446eed9
 
 
 ###Register User
-POST http://localhost:4700/user
+POST http://localhost:4600/user
 Content-Type: application/json
 
 {
@@ -41,10 +41,10 @@ Content-Type: application/json
 
 
 ###Login User
-POST http://localhost:4700/user/login
+POST http://localhost:4600/user/login
 Content-Type: application/json
 
 {
     "username":"David Munyiri",
-    "password":"1234567890"
+    "password":"12345678"
 }

@@ -1,18 +1,13 @@
 const {v4}=require('uuid')
 const mssql=require('mssql');
-//const { createNotesTable } = require('../Database/Tables/notesTable');
+
 const { sqlConfig } = require('../config/config');
-//const notes=[] for test using noDB
 
 const createNote=async(req,res)=>{
     try {
         const id=v4()
 
-       // const creation_time=Date.now();
-
         const {note_title,note_content}=req.body
-//const newNote={id,note_title,note_content,creation_time}
-
 mssql.connect(sqlConfig)
 .then((pool)=>{
     pool.request()
