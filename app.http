@@ -2,8 +2,8 @@ POST http://localhost:4700/projects
 Content-Type: application/json
 
 {
-    "note_title":"Code",
-    "note_content":"I will code for eight hours tommmorrow"
+    "note_title":"Recite Quran",
+    "note_content":"I will recite quran for eight hours tommmorrow"
 }
 
 
@@ -30,21 +30,21 @@ DELETE http://localhost:4700/projects/f40c5e1a-5439-4b68-8ec1-97e16446eed9
 
 
 ###Register User
-POST http://localhost:4700/register
+POST http://localhost:4700/user
 Content-Type: application/json
 
 {
-    "username":"AbdulRaheem Munyiri",
-    "email":"davidmunyiri2019@outlook.com",
+    "username":"AbdulRaheem M",
+    "email":"davidmunyiri2019@gmail.com",
     "password":"12345678"
 }
 
 
 ###Login User
-POST http://localhost:4700/register/login
+POST http://localhost:4700/user/login
 Content-Type: application/json
 
 {
-    "username":"AbdulRaheem Munyiri",
-    "password":"12345678"
+    "username":"David Munyiri",
+    "password":"1234567890"
 }

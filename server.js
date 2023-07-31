@@ -4,7 +4,7 @@ const { userRouter } = require('./Routes/userRoutes');
 const app=express();
 app.use(express.json())
 app.use('/projects',projectRouter)
-app.use('/register',userRouter)
+app.use('/user',userRouter)
 app.use((err,req,res,next)=>{
     res.json({Error:err})
 })
