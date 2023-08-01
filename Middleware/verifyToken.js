@@ -2,7 +2,7 @@ const jwt=require('jsonwebtoken')
 const dotenv=require('dotenv')
 dotenv.config()
 
-const verifyToken=async(req,res)=>{
+const verifyingToken=async(req,res,next)=>{
     try {
         const token=request.headers['token']
         if(!token){
@@ -15,10 +15,12 @@ const verifyToken=async(req,res)=>{
         
     } catch (error) {
         return res.status(401).json({
-            message:error.message
+            message:'not understood'
         })
     }
+    next()
 }
+
 module.exports={
-    verifyToken,
+    verifyingToken,
 }

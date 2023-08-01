@@ -1,5 +1,6 @@
 POST http://localhost:4600/notes
 Content-Type: application/json
+token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjOTdhODdkLTNmNzEtNDdiZi1hNDA5LWZlNjVlY2I0ZDNkOCIsInVzZXJuYW1lIjoiU2Ftc29uIE13YW5naSIsImVtYWlsIjoic2Ftc29ubXdhbmdpQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaXNzZW50IjpmYWxzZSwiaWF0IjoxNjkwODYyNzkxLCJleHAiOjE2OTA4OTg3OTF9.pt0KUolnf6Xhdr9KFcgEjkky_od2kExRCqraKk9pWEo"
 
 {
     "note_title":"Recite Quran",
