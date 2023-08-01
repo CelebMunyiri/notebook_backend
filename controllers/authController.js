@@ -57,9 +57,7 @@ const userLogin=async(req,res)=>{
             const {password,...payload}=user
             const token=jwt.sign(payload, process.env.SECRET,{expiresIn:'36000s'})
             return res.status(200).json({
-                message:'Logged in',
-                token
-            })
+                message:'Logged in', token })
         }else{
             return res.status(400).json({
                 message:'Invalid Login Credential'

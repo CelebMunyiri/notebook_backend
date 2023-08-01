@@ -1,19 +1,19 @@
-const jwt=require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 const dotenv=require('dotenv')
+
 dotenv.config()
 
-const verifyingToken=async(req,res,next)=>{
+const verifyingToken= async (req,res,next)=>{
     try {
-        const token=request.headers['token']
+        const token=req.headers['token']
         if(!token){
-          return  res.status(401).json({
-                message:'Restricted Access, please provide a token'
-            })
+          return  res.status(401).json({message:'Restricted Access, please provide a token' }) 
         }
-        const decodedData=jwt.verify(token,process.env.SECRET)
-        req.info=decodedData
+        const decodedData=jwt.verify(token, process.env.SECRET)
+        req.info = decodedData
+        console.log(decodedData);
         
-    } catch (error) {
+    } catch ( error) {
         return res.status(401).json({
             message:'not understood'
         })
