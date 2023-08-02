@@ -18,7 +18,8 @@ mssql.connect(sqlConfig)
     .execute('createNoteProc')
     .then((respons)=>{
         return res.json({
-            message:'New Note Created as success'
+            message:'New Note Created as success',
+        
         })
         
         })
@@ -71,11 +72,13 @@ const getOneNote=async(req,res)=>{
             .input('id',id)
             .execute('getOneNoteProc')
             .then((result)=>{
-                res.json({
-                    message:'Here is the One Note'
+               res.json({
+                    message:'Here is the One Note',
+                    note: result.recordset
                 })
+                
             }).catch((error)=>{
-                res.json({Error:`You have an error ${error}`})
+                res.status(404).json({Error:`You have an error ${error}`})
             })
         })
     } catch (error) {
@@ -90,7 +93,8 @@ const getAllNotes=async(req,res)=>{
         pool.request()
         .execute('getAllNotesProc')
         .then((result)=>{
-            res.json({message:'Here are all the notes'})
+            res.json({message:'Here are all the notes',
+        allNotes:result.recordset})
         })
     }).catch((error)=>{
         res.json({Error:`You have an error ${error}`})

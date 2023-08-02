@@ -9,7 +9,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3MjJjNzdhLWU4MmEtNDI3Zi1iZ
 
 
 ### GET ONE Note
-GET http://localhost:4600/notes/
+GET http://localhost:4600/notes/1e3356a2-6dfd-4cde-b9d8-0bda96e8acf3
 
 
 ###GET ALL NOTES

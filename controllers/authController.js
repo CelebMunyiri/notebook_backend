@@ -17,7 +17,7 @@ const id=v4()
 const {username,email,password}=req.body
 const salt = await bcrypt.genSalt(10)
 const hashedPassword=await bcrypt.hash(password, salt)
-console.log(hashedPassword);
+//console.log(hashedPassword);
 mssql.connect(sqlConfig)
 .then((pool)=>{
     pool.request()

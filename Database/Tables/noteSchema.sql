@@ -11,3 +11,5 @@ BEGIN
 CATCH
 THROW 50001, 'Table is in existence',1
 END CATCH
+
+SELECT * FROM notesTable
