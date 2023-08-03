@@ -6,6 +6,7 @@ const dotenv=require('dotenv')
 dotenv.config()
 const { createUserTable } = require('../Database/Tables/userTable')
 const { sqlConfig } = require('../config/config');
+const { randomBytes } = require('crypto')
 
 
 
@@ -77,5 +78,6 @@ const userLogin=async(req,res)=>{
 
 module.exports={
     registerUser,
-    userLogin
+    userLogin,
+
 }

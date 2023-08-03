@@ -1,6 +1,6 @@
 POST http://localhost:4600/notes
 Content-Type: application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3MjJjNzdhLWU4MmEtNDI3Zi1iZmE4LWY5NDZhMjlmNTM3NCIsInVzZXJuYW1lIjoiTXVueWlyaSBNIiwiZW1haWwiOiJtdW55aXJpLm13YW5naS5jb20iLCJyb2xlIjoidXNlciIsImlzc2VudCI6ZmFsc2UsImlhdCI6MTY5MDg3Nzk5MCwiZXhwIjoxNjkwOTEzOTkwfQ.8hHu4bJEaaZd8NcU6X5n63KV1WT8j-HIWoEuayeh7mQ
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3MjJjNzdhLWU4MmEtNDI3Zi1iZmE4LWY5NDZhMjlmNTM3NCIsInVzZXJuYW1lIjoiTXVueWlyaSBNIiwiZW1haWwiOiJtdW55aXJpLm13YW5naS5jb20iLCJyb2xlIjoidXNlciIsImlzc2VudCI6ZmFsc2UsImlhdCI6MTY5MDk2NjI1NywiZXhwIjoxNjkxMDAyMjU3fQ.h3C14_v5qiReKT2sNqjKRxqt9WAg7ZK-yC-aV_HxITg
 
 {
     "note_title":"Recite Quran",
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 {
     "username":"Munyiri M",
-    "email":"munyiri.mwangi.com",
+    "email":"munyirimwa.mwangi.com",
     "password":"12345678"
 }
 
