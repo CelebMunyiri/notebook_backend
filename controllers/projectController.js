@@ -8,28 +8,22 @@ const createNote=async(req,res)=>{
         const id=v4()
 
         const {note_title,note_content}=req.body
-mssql.connect(sqlConfig)
-.then((pool)=>{
+const pool=await mssql.connect(sqlConfig)
+const result=await pool.request
     pool.request()
     .input('id',id)
     .input('note_title',note_title)
     .input('note_content',note_content)
    // .input('creation_time',creation_time)
     .execute('createNoteProc')
-    .then((respons)=>{
+   
+    if(result.rowsAffected == 1){
         return res.json({
-            message:'New Note Created as success',
+            message: "New Note Created as success" })  
+        }else{
+            return res.json({message: "Note Creation Failed"})
+        }   
         
-        })
-        
-        })
-        .catch((err)=>{
-            res.json({
-                error:err.message
-            })
-    })
-
-})
   }  catch (error) {
   return res.json({error:`${error.message}`})      
     }
