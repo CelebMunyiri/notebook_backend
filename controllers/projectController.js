@@ -9,16 +9,15 @@ const createNote=async(req,res)=>{
 
         const {note_title,note_content}=req.body
 const pool=await mssql.connect(sqlConfig)
-const result=await pool.request
-    pool.request()
+const result=(await pool.request()
     .input('id',id)
     .input('note_title',note_title)
     .input('note_content',note_content)
    // .input('creation_time',creation_time)
-    .execute('createNoteProc')
+    .execute('createNoteProc'))
    
     if(result.rowsAffected == 1){
-        return res.json({
+     res.json({
             message: "New Note Created as success" })  
         }else{
             return res.json({message: "Note Creation Failed"})
@@ -34,23 +33,23 @@ const updateNote=async(req,res)=>{
         const {id}=req.params
 
         const {note_title,note_content}=req.body
-        mssql.connect(sqlConfig)
-        .then((pool)=>{
-            pool.request()
+     const pool=await   mssql.connect(sqlConfig)
+    
+       const result=(await  pool.request()
             .input('id',id)
             .input('note_title',note_title)
             .input('note_content',note_content)
-            .execute('updateNoteProc')
-            .then((result)=>{
-                return res.json({
-                    message:'Project Updated Successfully'
+            .execute('updateNoteProc')) 
+            if(result.rowsAffected == 1){
+                res.status(200).json({
+                    message: 'Note Update Success'
                 })
-                
-            })
-        }).catch((error)=>{
-            res.json({Error:`You have an error ${error}`})
-        })
-        
+            }else{
+                res.status(400).json({
+                    message: 'Note Update Failure'
+                })
+            }
+            
     } catch (error) {
         res.json({Error:error.message})
     }
