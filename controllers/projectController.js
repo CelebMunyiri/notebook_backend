@@ -59,21 +59,14 @@ const getOneNote=async(req,res)=>{
     try {
         const {id}=req.params
         
-        mssql.connect(sqlConfig)
-        .then((pool)=>{
-            pool.request()
+      const pool=await mssql.connect(sqlConfig)
+        
+         const note=(await pool.request()
             .input('id',id)
-            .execute('getOneNoteProc')
-            .then((result)=>{
-               res.json({
-                    message:'Here is the One Note',
-                    note: result.recordset
-                })
-                
-            }).catch((error)=>{
-                res.status(404).json({Error:`You have an error ${error}`})
-            })
-        })
+            .execute('getOneNoteProc')).recordset 
+
+            return res.status(200).json({note:note})
+            
     } catch (error) {
         res.json({Error:error})
     }

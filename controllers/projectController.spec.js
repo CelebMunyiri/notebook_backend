@@ -1,5 +1,5 @@
 import mssql from "mssql";
-import { createNote, updateNote } from "./projectController";
+import { createNote, getOneNote, updateNote } from "./projectController";
 
  const res = {
    status: jest.fn().mockReturnThis(),
@@ -53,7 +53,8 @@ describe("Note Contoller", () => {
       })
     })
   })
-//Testing Update
+
+//TESTING Update NOTE CONTROLLER
 describe("Testing Update Controller",()=>{
   it("Should Update a project",async()=>{
     const noteId='celebmunyiri'
@@ -111,4 +112,33 @@ describe("Testing Update Controller",()=>{
   
 })
 
+//TESTING GET ONE NOTE CONTROLLER
+
+describe("GET ONE Note By Id",()=>{
+  it ("Should return One Note", async()=>{
+  const noteID = 'celebmunyiri1234'
+          const mockNote = {
+            note_title:"Recite Quran",
+            note_content:"I will Recite quran to Jamaa"
+            }
+
+          const req = {
+              params: {
+                  id: noteID
+              }
+          }
+
+          jest.spyOn(mssql, "connect").mockResolvedValueOnce({
+              request: jest.fn().mockReturnThis(),
+              input: jest.fn().mockReturnThis(),
+              execute: jest.fn().mockResolvedValueOnce({
+                  recordset: [mockNote]
+              })
+          })
+
+          await getOneNote(req, res)
+
+          expect(res.json).toHaveBeenCalledWith({note: [mockNote]})
+      })
+})
 })
