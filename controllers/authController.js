@@ -3,10 +3,11 @@ const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 const {v4}=require('uuid')
 const dotenv=require('dotenv')
+const joi=require('joi')
 dotenv.config()
 const { createUserTable } = require('../Database/Tables/userTable')
 const { sqlConfig } = require('../config/config');
-const { randomBytes } = require('crypto')
+//const { randomBytes } = require('crypto')
 const { userLoginSchema, userRegisterSchema } = require('../Validators/userValidator')
 
 
@@ -19,7 +20,7 @@ const id=v4()
 const {username,email,password}=req.body
 const {error}=userRegisterSchema.validate(req.body)
 if(error){
-    return res.status(422).json(error.details)
+    return res.status(422).json(error.details[0].message)
 }
 const salt = await bcrypt.genSalt(10)
 const hashedPassword=await bcrypt.hash(password, salt)
@@ -51,7 +52,7 @@ const userLogin=async(req,res)=>{
         const {username,password}=req.body
         const {error}=userLoginSchema.validate(req.body)
         if(error){
-            return res.status(422).json(error.details)
+            return res.status(422).json(error.details[0].message)
         }
 
         const pool=await mssql.connect(sqlConfig)
@@ -63,7 +64,6 @@ const userLogin=async(req,res)=>{
       if (user){
         const comparePwd=await bcrypt.compare(password, hashedPassword)
        
-
         if(comparePwd){
             const {password,...payload}=user
             const token=jwt.sign(payload, process.env.SECRET,{expiresIn:'36000s'})
@@ -76,9 +76,7 @@ const userLogin=async(req,res)=>{
         }
       }else{
         return res.status(400).json({
-            message:'User NOt Found'
-
-        })
+            message:'User NOt Found' })
       }
     } catch (error) {
         res.json({Error:error.message})
