@@ -74,17 +74,11 @@ const getOneNote=async(req,res)=>{
 
 const getAllNotes=async(req,res)=>{
     try {
-        mssql.connect(sqlConfig)
-    .then((pool)=>{
-        pool.request()
-        .execute('getAllNotesProc')
-        .then((result)=>{
-            res.json({message:'Here are all the notes',
-        allNotes:result.recordset})
-        })
-    }).catch((error)=>{
-        res.json({Error:`You have an error ${error}`})
-    })
+    const pool=await mssql.connect(sqlConfig)
+    const notes=(await pool.request()
+        .execute('getAllNotesProc')).recordset 
+        return res.status(200).json({notes:notes})
+     
     } catch (error) {
         return res.json({Error:error})
     }
@@ -94,17 +88,17 @@ const deleteNote=async(req,res)=>{
     try {
         const {id}=req.params
         
-        mssql.connect(sqlConfig)
-        .then((pool)=>{
-            pool.request()
+    const pool=await mssql.connect(sqlConfig)
+        const result=(await pool.request()
             .input('id',id)
-            .execute('deleteNoteProc')
-            .then((result)=>{
-                res.json({message:'Note deleted Succesfully'})
-            })
-        }).catch((error)=>{
-            return res.json({Error:error})
-        })
+            .execute('deleteNoteProc'))
+            if(result.rowsAffected==1){
+                return res.status(200).json({message:"Note Deleted Success"})
+            }else{
+                return res.status(401).json({message:"Error Deleting Note"})
+            }
+           
+       
     } catch (error) {
         res.json({Error:error})
     }
