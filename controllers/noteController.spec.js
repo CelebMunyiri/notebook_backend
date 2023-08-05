@@ -5,7 +5,7 @@ import {
   getAllNotes,
   getOneNote,
   updateNote,
-} from "./projectController";
+} from "./noteController";
 
 const res = {
   status: jest.fn().mockReturnThis(),

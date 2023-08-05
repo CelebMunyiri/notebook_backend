@@ -5,16 +5,16 @@ const {
   getAllNotes,
   updateNote,
   deleteNote,
-} = require("../controllers/projectController");
+} = require("../controllers/noteController");
 const { verifyingToken } = require("../Middleware/verifyToken");
 
 const projectRouter = Router();
 
 projectRouter.post("/", verifyingToken, createNote);
-projectRouter.get("/:id", getOneNote);
-projectRouter.get("/", getAllNotes);
-projectRouter.put("/:id", updateNote);
-projectRouter.delete("/:id", deleteNote);
+projectRouter.get("/:id",verifyingToken, getOneNote);
+projectRouter.get("/",verifyingToken, getAllNotes);
+projectRouter.put("/:id",verifyingToken, updateNote);
+projectRouter.delete("/:id",verifyingToken, deleteNote);
 
 module.exports = {
   projectRouter,

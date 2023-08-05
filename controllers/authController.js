@@ -7,6 +7,7 @@ dotenv.config()
 const { createUserTable } = require('../Database/Tables/userTable')
 const { sqlConfig } = require('../config/config');
 const { randomBytes } = require('crypto')
+const { userLoginSchema, userRegisterSchema } = require('../Validators/userValidator')
 
 
 
@@ -16,9 +17,13 @@ const registerUser=async(req,res)=>{
 const id=v4()
 
 const {username,email,password}=req.body
+const {error}=userRegisterSchema.validate(req.body)
+if(error){
+    return res.status(422).json(error.details)
+}
 const salt = await bcrypt.genSalt(10)
 const hashedPassword=await bcrypt.hash(password, salt)
-//console.log(hashedPassword);
+
 mssql.connect(sqlConfig)
 .then((pool)=>{
     pool.request()
@@ -44,6 +49,11 @@ mssql.connect(sqlConfig)
 const userLogin=async(req,res)=>{
     try {
         const {username,password}=req.body
+        const {error}=userLoginSchema.validate(req.body)
+        if(error){
+            return res.status(422).json(error.details)
+        }
+
         const pool=await mssql.connect(sqlConfig)
       const user= (await pool.request().input('username',mssql.VarChar,username).execute('loginUserProc')).recordset[0]
     
